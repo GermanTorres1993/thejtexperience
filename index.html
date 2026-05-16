@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The JT Experience</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0a0908;--gold:#d2a86a;--text:#f4ece1;--muted:#c8b7a0}
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,sans-serif}
+    .hero{min-height:100vh;position:relative;display:flex;align-items:center;padding:8vw;background:#0a0908}
+    .hero-media{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center center;background:#0a0908}
+    .hero:before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 22% 45%,rgba(0,0,0,.35),rgba(0,0,0,.86) 62%),linear-gradient(120deg,rgba(0,0,0,.75),rgba(0,0,0,.42) 55%,rgba(0,0,0,.82))}
+    .wrap{position:relative;z-index:2;max-width:760px;padding:.4rem 0}
+    h1{font-family:Cinzel,serif;font-size:clamp(2.2rem,6vw,5rem);line-height:.95;margin:0;color:var(--gold);text-transform:uppercase;text-shadow:0 3px 20px rgba(0,0,0,.7)}
+    .tag{font-family:Cinzel,serif;letter-spacing:.25em;font-size:.8rem;color:#f0d6ad;text-transform:uppercase;margin-bottom:1rem;text-shadow:0 2px 10px rgba(0,0,0,.7)}
+    p{font-size:1.05rem;line-height:1.7;color:#e7d9c6;max-width:62ch;text-shadow:0 2px 10px rgba(0,0,0,.65)}
+    .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:1.3rem}
+    a.btn{padding:.85rem 1.2rem;border:1px solid var(--gold);color:var(--text);text-decoration:none;border-radius:999px}
+    a.btn.gold{background:var(--gold);color:#24180e;font-weight:700}
+    .section{padding:4rem 8vw;border-top:1px solid rgba(210,168,106,.25)}
+    h2{font-family:Cinzel,serif;color:var(--gold);font-size:1.8rem}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+    .card{padding:1rem;border:1px solid rgba(210,168,106,.35);background:rgba(255,255,255,.02)}
+    .video-wrap{position:relative;padding-top:56.25%;border:1px solid rgba(210,168,106,.35);background:#000}
+    .video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+    footer{padding:2rem 8vw;color:#b49d7f;font-size:.9rem}
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <video id="heroVideo" class="hero-media" autoplay muted loop playsinline webkit-playsinline preload="auto">
+      <source src="./assets/hero_ultra.mp4" type="video/mp4" />
+    </video>
+    <div class="wrap">
+      <div class="tag">Live Band · London</div>
+      <h1>The JT<br>Experience</h1>
+      <p>Rock, soul, and authentic live-stage energy. Perfect for bars, private events, festivals, and nights that need a band with real presence.</p>
+      <div class="btns">
+        <a class="btn gold" href="mailto:booking@blackoutsaints.com">Book the Band</a>
+        <a class="btn" href="#promo">Watch Promo</a>
+        <a class="btn" href="#shows">Upcoming Shows</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="section" id="promo">
+    <h2>Promo Video</h2>
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/7wF20Iw0ZZI" title="The JT Experience Promo" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section class="section" id="shows">
+    <h2>Upcoming Shows</h2>
+    <div class="grid">
+      <div class="card"><strong>18 May</strong><br>Shepherd's Bush, London</div>
+      <div class="card"><strong>31 May</strong><br>Camden Live Night</div>
+      <div class="card"><strong>14 Jun</strong><br>Private Event · West London</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>For Bookings</h2>
+    <p>Instagram: <a href="https://www.instagram.com/j.t.music2023?igsh=bWp4cmMxNWl0bTJk" target="_blank" rel="noopener" style="color:#f2d4a3;text-decoration:none;">@j.t.music2023</a><br>Based in London · Available UK-wide</p>
+  </section>
+
+  <footer>© The JT Experience</footer>
+
+  <script>
+    // Ensure first load starts at header, even if browser kept old #promo hash
+    window.addEventListener('load', () => {
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname);
+      }
+      window.scrollTo({ top: 0, behavior: 'instant' });
+
+      const v = document.getElementById('heroVideo');
+      if (v) {
+        const tryPlay = () => v.play().catch(() => {});
+        tryPlay();
+        document.addEventListener('touchstart', tryPlay, { once: true });
+        document.addEventListener('click', tryPlay, { once: true });
+        document.addEventListener('visibilitychange', () => {
+          if (!document.hidden) tryPlay();
+        });
+      }
+    });
+  </script>
+</body>
+</html>
